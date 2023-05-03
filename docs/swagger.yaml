@@ -1,0 +1,80 @@
+definitions:
+  entity.Machinetype:
+    properties:
+      lastappeared_id:
+        type: integer
+      machinetype:
+        type: string
+    type: object
+host: localhost:2345
+info:
+  contact: {}
+  description: 使用golang语言,整合Swagger实现简单Postgres整合Gis服务
+  title: POSTGRESQL-SERVER-GOLANG
+  version: "1.0"
+paths:
+  /trajectory/machineTypeAdd:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 机型请求体
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Machinetype'
+      responses: {}
+      summary: 添加轨迹绑定机型
+      tags:
+      - Trajectory_轨迹属性控制器
+  /trajectory/machineTypeSearch:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - collectionFormat: csv
+        description: 轨迹Id
+        in: query
+        items:
+          type: string
+        name: lastappeared_ids
+        type: array
+      - description: 机型
+        in: query
+        name: machinetype
+        type: string
+      responses: {}
+      summary: 按照lastappeared_id,machinetype 查询机型
+      tags:
+      - Trajectory_轨迹属性控制器
+  /trajectory/machineTypeUpdate:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 机型请求体
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Machinetype'
+      responses: {}
+      summary: 更新机型
+      tags:
+      - Trajectory_轨迹属性控制器
+  /trajectory/objecttrajactory/{lastappeared_id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 轨迹Id
+        in: path
+        name: lastappeared_id
+        required: true
+        type: string
+      responses: {}
+      summary: 按照lastappeared_id查询轨迹
+      tags:
+      - Trajectory_轨迹属性控制器
+swagger: "2.0"
