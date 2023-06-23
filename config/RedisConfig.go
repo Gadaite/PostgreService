@@ -5,11 +5,15 @@ import (
 	"log"
 )
 
+var RedisDB redis.Conn
+var password = "LYP809834049"
+
 func GetRedisConnect(network string, address string, db int) redis.Conn {
-	conn, err := redis.Dial(network, address, redis.DialDatabase(db))
+	conn, err := redis.Dial(network, address, redis.DialDatabase(db), redis.DialPassword(password))
 	if err != nil {
 		panic(err)
 	}
+	RedisDB = conn
 	return conn
 }
 

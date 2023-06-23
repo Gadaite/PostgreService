@@ -14,6 +14,7 @@ import (
 // @BasePath
 func main() {
 	conf.InitPostGresDB()
+	conf.GetRedisConnect("tcp", "192.168.1.10:6379", 1)
 	//connect := conf.GetRedisConnect("tcp", "1.15.94.16:6380", 0)
 	//keys := conf.GetRedisAllKeys(connect)
 	//fmt.Println(keys)
