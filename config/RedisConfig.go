@@ -30,8 +30,8 @@ func GetRedisAllKeys(conn redis.Conn) []string {
 	if err != nil {
 		panic(keys)
 	}
+	}
 	return keys
-}
 
 func GetRedisStringMapByKey(key string, conn redis.Conn) map[string]string {
 	mapValue, err := redis.StringMap(conn.Do("Get", key))
@@ -205,6 +205,7 @@ func UpdateRedisKeyFloatMapValue(key string, value map[string]float64, conn redi
 	if !containOrNot {
 		log.Fatalf("%s is not exists,do nothing!", key)
 		return false
+
 	} else {
 		res, err := redis.String(conn.Do("Set", key, value))
 		if err != nil {
