@@ -30,8 +30,8 @@ func GetRedisAllKeys(conn redis.Conn) []string {
 	if err != nil {
 		panic(keys)
 	}
-	}
 	return keys
+}
 
 func GetRedisStringMapByKey(key string, conn redis.Conn) map[string]string {
 	mapValue, err := redis.StringMap(conn.Do("Get", key))
